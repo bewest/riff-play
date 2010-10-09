@@ -7,17 +7,29 @@
 \version "2.12.3"
 
 
-global = { \key cis \minor \time 2/2 \tempo 4 = 95 }
+global = { \key cis \minor \time 3/2 \tempo 4 = 80 }
 uselessWords = \lyricmode {
   mee -- nah nee -- nah
+}
+
+descantPi = \relative c {
+
+  %\times 2/3 { fis8 a cis } fis4 cis
+
+  %dis2 ~ dis4 e2 r4
 }
 
 
 
 % Soprano
 sopranoMusic = \relative c'' {
-  %% d4 e fis g a b cis d e fis g
   \clef "treble"
+  %r2 r2 \descantPi
+  \partial 4
+  r4 
+  r2 r2
+  a2 cis e  <e gis b>2
+  <d fis a >
 }
 sopranoWords = \uselessWords
 
@@ -25,7 +37,6 @@ sopranoWords = \uselessWords
 % Altos
 altoMusic = \relative a' {
   \clef "treble"
-  %%\transpose c ees { d4 e fis g a b cis d e fis g }
 }
 altoWords = \uselessWords
 
@@ -38,8 +49,10 @@ mpatii = \relative c' {
 }
 
 motifi = \relative c' {
+  \times 3/8 {
   \mpati
   \mpati
+  }
   \mpati
   \mpati
 }
@@ -52,15 +65,15 @@ motifii =  \relative c' {
 }
 
 motifiii = \relative c' {
-  a8 e cis' e, a e cis' e,
-  a8 e cis' e, a e cis' a
+  \times 6/8 { a8 e cis' e, a e cis' e, }
+  \times 6/8 { a8 e cis' e, a e cis' a }
 }
 motifiv = \relative c' {
-  gis8 e b' e, gis e b' e,
-  gis8 e b' e, gis e b' gis
+  \times 6/8 { gis8 e b' e, gis e b' e, }
+  \times 6/8 { gis8 e b' e, gis e b' gis }
 }
 
-\motivicPhraseA = \relative c' {
+motivicPhraseA = \relative c' {
   \motifi
   \motifii
   \motifiii
@@ -71,8 +84,8 @@ motifiv = \relative c' {
 % Tenors
 tenorMusic = \relative c' {
   \clef "G_8"
-  %%| fis g a b cis d e fis
-  %%| g a b cis d e fis2
+  \partial 4
+  r4\mp 
   \motivicPhraseA
   \motivicPhraseA
 }
@@ -81,8 +94,9 @@ tenorWords = \sopranoWords
 % Basses
 bassMusic = \relative c' {
   \clef "bass"
-  %%| d'4 cis b a g fis e d
-  %%| cis b a g f e d2
+  \times 3/2 { a4 gis fis }  fis2
+  %r2.
+  %\motivicPhraseA
 }
 bassWords = \sopranoWords
 
