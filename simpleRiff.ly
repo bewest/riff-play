@@ -178,7 +178,9 @@ allChoirStaff = \new ChoirStaff <<
 harmonicStructureStaff = \new ChoirStaff <<
   \new Staff = "harmonicStructure" <<
     \set Staff.instrumentName = "outline"
-    \new Voice = "harmonicStructure" { \global \harmonicStructureMusic }
+    \new Voice = "harmonicStructure" {
+      \global \harmonicStructureMusic
+    }
   >>
 
 >>
