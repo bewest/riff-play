@@ -7,7 +7,7 @@
 \version "2.12.3"
 
 
-global = { \key cis \minor \time 3/2 \tempo 4 = 80 }
+global = { \key cis \minor \time 4/4 \tempo 4 = 77 }
 uselessWords = \lyricmode {
   mee -- nah nee -- nah
 }
@@ -27,9 +27,16 @@ sopranoMusic = \relative c'' {
   %r2 r2 \descantPi
   \partial 4
   r4 
-  r2 r2
-  a2 cis e  <e gis b>2
-  <d fis a >
+  r2 r4
+  cis
+  %\times 2/3 {a8 b cis }
+  %a4 \times 2/3 { b cis d } 
+  a4
+  \times 2/3 { b4 cis dis }
+  e8
+  <e gis>8 ~
+  <e gis>4
+  <d fis >2
 }
 sopranoWords = \uselessWords
 
@@ -37,6 +44,19 @@ sopranoWords = \uselessWords
 % Altos
 altoMusic = \relative a' {
   \clef "treble"
+  \partial 4
+  r4\mf
+  r2
+  <fis cis'>4
+  \times 2/3 {a8 gis fis }
+  cis4
+  \times 2/3 { <e a>4 <a cis> <cis e> ~}
+  <cis e>8
+  <b e>8 ~
+  <b e>2
+  <fis d'>2
+  %%<d' fis, a>2
+
 }
 altoWords = \uselessWords
 
@@ -49,10 +69,9 @@ mpatii = \relative c' {
 }
 
 motifi = \relative c' {
-  \times 3/8 {
   \mpati
   \mpati
-  }
+ 
   \mpati
   \mpati
 }
@@ -65,12 +84,12 @@ motifii =  \relative c' {
 }
 
 motifiii = \relative c' {
-  \times 6/8 { a8 e cis' e, a e cis' e, }
-  \times 6/8 { a8 e cis' e, a e cis' a }
+  a8 e cis' e, a e cis' e,
+  a8 e cis' e, a e cis' a
 }
 motifiv = \relative c' {
-  \times 6/8 { gis8 e b' e, gis e b' e, }
-  \times 6/8 { gis8 e b' e, gis e b' gis }
+  gis8 e b' e, gis e b' e,
+  gis8 e b' e, gis e b' gis
 }
 
 motivicPhraseA = \relative c' {
@@ -81,21 +100,49 @@ motivicPhraseA = \relative c' {
 
 }
 
-% Tenors
-tenorMusic = \relative c' {
+harmonicStructureMusic = \relative c' {
   \clef "G_8"
   \partial 4
   r4\mp 
   \motivicPhraseA
   \motivicPhraseA
+
+}
+
+
+% Tenors
+tenorMusic = \relative c' {
+  \clef "G_8"
+  \partial 4
+  r4\mp 
+  %%\motivicPhraseA
+  %%\motivicPhraseA
 }
 tenorWords = \sopranoWords
 
 % Basses
-bassMusic = \relative c' {
+bassMusic = \relative c {
   \clef "bass"
-  \times 3/2 { a4 gis fis }  fis2
-  %r2.
+  \partial 4
+  r4\mf 
+  %a8 gis fis4
+  %cis2
+  %\times 2/3 { cis8 d e } fis4
+  %\times 2/3 { fis <gis e>4 <a b,>4 }
+  %\times 2/3 { e2 d4 }
+   %cis4. cis8 e4
+  %d,2
+  %\times 3/2 { a4 gis fis }  fis2
+  r4
+  r4
+  r2
+  a4
+  %cis 
+  e'
+  %gis
+  b2
+  cis4
+  d2
   %\motivicPhraseA
 }
 bassWords = \sopranoWords
@@ -128,11 +175,20 @@ allChoirStaff = \new ChoirStaff <<
   \new Lyrics \lyricsto "basses" { \bassWords }
 >>  % end ChoirStaff
 
+harmonicStructureStaff = \new ChoirStaff <<
+  \new Staff = "harmonicStructure" <<
+    \set Staff.instrumentName = "outline"
+    \new Voice = "harmonicStructure" { \global \harmonicStructureMusic }
+  >>
+
+>>
 
 % Put it on a score.
 \score {
   <<
     \allChoirStaff
+    \harmonicStructureStaff
+
   >>
   
   \layout { }
