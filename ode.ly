@@ -16,7 +16,7 @@ uselessWords = \lyricmode {
 
 \header {
     %% piece = ""
-    opus = "Symphony No 9"
+    %% opus = "theme from Symphony No 9"
     dedication = "for Raluca"
     title = "Ode to Joy"
 
@@ -28,8 +28,8 @@ uselessWords = \lyricmode {
             \center-column {
                ""
                "Title second line, longer" }
-    subtitle = "the subtitle,"
   %} 
+    subtitle = "theme from Symphony no 9"
     tagline = #(string-append "Engraved by bewest via LilyPond version " (lilypond-version) " on " now)
     %% poet = "Poet"
     composer =  \markup { "Beethoven" \small "(1770-1827)" }
@@ -48,44 +48,69 @@ descantPi = \relative c {
 
 
 
+melodyAi = \relative c'' {
+  | b4 b c d
+  | d c b a
+  | g g a b
+  | b4. a8 a2
+}
+melodyAii = \relative c'' {
+  | b4 b c d
+  | d c b a
+  | g g a b
+  | a4. g8 g2
+}
+accompAi = \relative c' {
+  | g2 g2
+  | d2 d2
+  | g2 g2
+  | g2 d2
+}
+accompAii = \relative c' {
+  | g2 g2
+  | d2 d2
+  | g2 g2
+  | d2 g2
+}
 melodyMusicUpperA = \relative c'' {
 
-  b4 b c d
-  d c b a
-  g g a b
-  b4. a8 a2
-
-  b4 b c d
-  d c b a
-  g g a b
-  a4. g8 g2
-
+  \melodyAi
+  \melodyAii
 
 }
 
+melodyMusicUpperB = \relative c'' {
+
+  a4 a b g
+  a4 b8 c b4 g
+  a4 b8 c b4 a
+  g  a  d,2
+
+}
 
 melodyMusicLowerA = \relative c' {
-  g2 g2
-  d2 d2
-  g2 g2
-  g2 d2
+  \accompAi
+  \accompAii
+}
 
-  g2 g2
-  d2 d2
-  g2 g2
-  d2 g2
+melodyMusicLowerB = \relative c' {
+  d,2 d
+  d2 d
+  d2 g
+  c,2 d
 }
 
 %%%%%%%%%%%%%%%%%%%%%
 % Set up the staff
-   
-     \version "2.10.10"
      upper = \relative c'' {
         \clef treble
+        \tempo 4 = 92
         \key g \major
         \time 4/4
      
         \melodyMusicUpperA
+        \melodyMusicUpperB
+        \melodyAii
      }
      
      lower = \relative c {
@@ -94,7 +119,8 @@ melodyMusicLowerA = \relative c' {
         \time 4/4
 
         \melodyMusicLowerA
-     
+        \melodyMusicLowerB
+        \accompAii
      }
      
  \score {
@@ -107,8 +133,6 @@ melodyMusicLowerA = \relative c' {
   \layout { }
   \midi { }
 }
-
-
 
 %%%%%
 % EOF
