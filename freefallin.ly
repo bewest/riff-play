@@ -5,14 +5,11 @@
 \version "2.12.3"
 
 
-today = #(strftime "%Y-%m-%d" (localtime (current-time)))
 now   = #(strftime "%Y-%m-%d %H:%I %C" (localtime (current-time)))
 global = { \key cis \minor \time 4/4 \tempo 4 = 77 }
 uselessWords = \lyricmode {
   mee -- nah nee -- nah
 }
-
-% pieceFooter = #( ly:export ( string-append "Compiled " today))
 
 \header {
     %% piece = ""
@@ -37,14 +34,6 @@ uselessWords = \lyricmode {
     %% instrument = \markup { \small "piano" }
 
 }
-descantPi = \relative c {
-
-  %\times 2/3 { fis8 a cis } fis4 cis
-  %dis2 ~ dis4 e2 r4
-}
-
-
-
 
 melodyAi = \relative c'' {
   | <a f c>4.
@@ -54,6 +43,7 @@ melodyAi = \relative c'' {
     <g f bes,>4. ~
     <g f bes,>4
 }
+
 accompAi = \relative c {
   | f8 f c16 f
     bes,4. bes16 c d bes
