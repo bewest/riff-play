@@ -69,7 +69,7 @@ accompAi = \relative c {
         \accompAi
      }
      
- \score {
+  \score {
 
   \new PianoStaff <<
      \set PianoStaff.instrumentName = "Piano  "
