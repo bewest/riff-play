@@ -11,6 +11,8 @@ pdf: %.pdf
 	lilypond --pdf $<
 
 %.ps: %.ly
+	lilypond -dbackend=eps $<
+
 
 %.png: %.ly
 
