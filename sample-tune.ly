@@ -18,6 +18,7 @@ AECG =
                 stroke"
 }
 %%------------------------------------------------
+\makeStringTuning #'custom-tuning <g, c e a> 
 
 notes = { \relative c'
   g,4 c e a
@@ -42,6 +43,7 @@ myChords = \chordmode {
 }
 
 Chords = \simultaneous {
+  \set FretBoards.stringTunings = #ukulele-tuning
   %\contextStringTuning #'custom-tuning <g, c e a>
  << \myChords >>
 }
@@ -60,7 +62,8 @@ Notation = \simultaneous { %% Combine both parts for notation
 
 Tablature = \simultaneous { %% Combine both parts for Tablature
   \time 4/4
-  \contextStringTuning #'custom-tuning <g, c e a>
+  %\contextStringTuning #'custom-tuning <g, c e a>
+  \set TabStaff.stringTunings = #custom-tuning
   \tabFullNotation
   << \context TabVoice=TabVoiceA \uI >>
   << \context TabVoice=TabVoiceB \keepWithTag #'restnotes \dI >>
@@ -69,11 +72,16 @@ Tablature = \simultaneous { %% Combine both parts for Tablature
 
 \score {
   \context StaffGroup {
+    <<
     \simultaneous {
       << \context ChordNames=FullChords \Chords >>
+      << \context FretBoards=FretChords \Chords >>
       << \context Staff=FullNotation \Notation >>
+    }
+    \simultaneous {
       << \context TabStaff=FullTab \Tablature >>
     }
+    >>
   }
 } 
 
@@ -88,15 +96,14 @@ Tablature = \simultaneous { %% Combine both parts for Tablature
     %\set stringTunings = #tenor-ukulele
     %\set TabStaff.stringTunings = #bass-tuning
     %\set TabStaff.stringTunings = #ukulele-tenor
-    \set TabStaff.stringTunings = #tenor-ukulele-tuning
+    \set TabStaff.stringTunings = #custom-tuning
     %\displayInstrumentDefaultTunings #"tenor-ukulele"
     %\set TabStaff.displayInstrumentDefaultTunings #"tenor-ukulele"
     % \set stringTunings = #ukulele
-    \contextStringTuning #'custom-tuning <g, c e a>
     \tabFullNotation
     \notes
     
-          \displayInstrumentDefaultTunings "tenor-ukulele"
+          \displayInstrumentDefaultTunings "ukulele"
     \set TabStaff.instrumentName = \markup { " " \AECG }
     \set TabStaff.shortInstrumentName = \markup \AECG
   }
