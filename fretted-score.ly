@@ -12,7 +12,7 @@
 
 %#(define-public tenor-ukulele-tuning '(9 4 0 -5))
 %\makeStringTuning #'tenor-ukulele-tuning '(9 4 0 -5)) %<g, c, e>
-\makeStringTuning #'custom-tuning <g, c e a> 
+\makeStringTuning #'tenor-ukulele-tuning <g, c e a> 
 
 notes = { \relative c'
   g,4 c e a
@@ -55,7 +55,7 @@ myChords = \chordmode {
     % first string dropped an octave down.  This gives me a
     % usable bass as the first string.
     \tabFullNotation
-    \set TabStaff.stringTunings = #custom-tuning
+    \set TabStaff.stringTunings = #tenor-ukulele-tuning
     \notes
   }
 
