@@ -13,7 +13,7 @@
     tagline = ""
 }
 
-%\include "predefined-ukulele-fretboards.ly"
+\include "predefined-ukulele-fretboards.ly"
 
 %\storePredefinedDiagram \chordmode {c:dim7}
 %                        #ukulele-tuning 

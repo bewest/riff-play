@@ -1,5 +1,6 @@
 
 % 
+\include "predefined-ukulele-fretboards.ly"
 %\include "predefined-tenor-ukulele-fretboards.ly"
 %\include "predefined-ukulele-fretboards.ly"
 %%postscript tuning name 
@@ -27,6 +28,56 @@ notes = { \relative c'
 
 }
 
+uI = {
+
+}
+
+dI = { 
+  \notes
+}
+
+myChords = \chordmode { 
+  a1
+  c
+}
+
+Chords = \simultaneous {
+  %\contextStringTuning #'custom-tuning <g, c e a>
+ << \myChords >>
+}
+
+Notation = \simultaneous { %% Combine both parts for notation
+  \time 4/4
+  \clef "G_8"
+  \key d \minor
+  \override Score.MetronomeMark #'padding = #6.0 \tempo 4=95
+  % \override StringNumber #'self-alignment-Y = #-1
+  \override Score.StringNumber #'padding = #3.5
+  \set fingeringOrientations = #'(up left down)
+  << \context Voice=VoiceA \uI >>
+  << \context Voice=VoiceB \keepWithTag #'bassnotes \dI >>
+}
+
+Tablature = \simultaneous { %% Combine both parts for Tablature
+  \time 4/4
+  \contextStringTuning #'custom-tuning <g, c e a>
+  \tabFullNotation
+  << \context TabVoice=TabVoiceA \uI >>
+  << \context TabVoice=TabVoiceB \keepWithTag #'restnotes \dI >>
+}
+
+
+\score {
+  \context StaffGroup {
+    \simultaneous {
+      << \context ChordNames=FullChords \Chords >>
+      << \context Staff=FullNotation \Notation >>
+      << \context TabStaff=FullTab \Tablature >>
+    }
+  }
+} 
+
+    %{
 << 
   \new Staff {
     \clef "treble_8"
@@ -45,13 +96,12 @@ notes = { \relative c'
     \tabFullNotation
     \notes
     
-    %{
           \displayInstrumentDefaultTunings "tenor-ukulele"
     \set TabStaff.instrumentName = \markup { " " \AECG }
     \set TabStaff.shortInstrumentName = \markup \AECG
-    %}
   }
 >>
+    %}
 %%------------------------------------------------
 
 %%%%%
