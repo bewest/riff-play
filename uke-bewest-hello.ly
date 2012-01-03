@@ -65,7 +65,8 @@ Notation = \simultaneous { %% Combine both parts for notation
 Tablature = \simultaneous { %% Combine both parts for Tablature
   \time 3/4
   %\override TabStaff.Stem #'transparent = ##f %% Makes stems transparent
-  %\override TabStaff.Beam #'transparent = ##f %% Makes beams transparent
+  \override TabStaff.Beam #'transparent = ##f %% Makes beams transparent
+  \tabFullNotation
   << \context TabVoice=TabVoiceA \uI >>
   << \context TabVoice=TabVoiceB \keepWithTag #'restnotes \dI >>
 }
@@ -75,7 +76,7 @@ Tablature = \simultaneous { %% Combine both parts for Tablature
   \context StaffGroup {
     \simultaneous {
       << \context Staff=FullNotation \Notation >>
-      << \context TabStaff=FullTab \Tablature >>
+      << \new TabStaff=FullTab \Tablature >>
     }
   }
 } 
