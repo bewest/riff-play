@@ -29,7 +29,7 @@ theme =  { \relative c'
     <g, bes> c
   | <bes, e>8 c
     <bes, e>8 c
-    <a, f>4 \laissezVibrer s
+    <a, f>2 \laissezVibrer
 }
 
 bridge = { \relative c
@@ -54,9 +54,7 @@ notes = {
   \bar "|:"
   \repeat volta 2 { \theme }
   \bar ":|:"
-  \repeat volta 2 { \bridge
-  \theme
-  }
+  \repeat volta 2 { \bridge \theme }
 
 }
 
