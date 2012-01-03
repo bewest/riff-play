@@ -1,6 +1,6 @@
 
-% 
-%%postscript tuning name 
+%
+%%postscript tuning name
 \include "predefined-ukulele-fretboards.ly"
 \version "2.14.2"
 %%------------------------------------------------
@@ -12,9 +12,9 @@
 
 }
 
-\makeStringTuning #'tenor-ukulele-tuning <g, c e a> 
+\makeStringTuning #'tenor-ukulele-tuning <g, c e a>
 
-theme =  { \relative c' 
+theme =  { \relative c'
     <a, f'>8 c
     <a, f>8 c
     <g, e>8 c
@@ -31,9 +31,32 @@ theme =  { \relative c'
     <bes, e>8 c
     <a, f>4 \laissezVibrer s
 }
+
+bridge = { \relative c
+  | <f a>8 c
+    <f a>8 c
+    <g bes>8 c
+    <g bes>8 c
+  | <ges a>8 c
+    <ges a>8 c
+    <g bes>8 c
+    <g bes>8 c
+  | <f b>8 c
+    <f b>8 c
+    <e c'>8 c
+    <e c'>8 c
+  | <f b>8 c
+    <f b>8 c
+    <g, c e c'>2\laissezVibrer
+}
+
 notes = {
-\repeat volta 2 {
-    \theme }
+  \bar "|:"
+  \repeat volta 2 { \theme }
+  \bar ":|:"
+  \repeat volta 2 { \bridge
+  \theme
+  }
 
 }
 
@@ -41,7 +64,7 @@ uI = {
 
 }
 
-dI = { 
+dI = {
   \notes
 }
 
@@ -77,7 +100,7 @@ Tablature = \simultaneous { %% Combine both parts for Tablature
       << \new TabStaff=FullTab \Tablature >>
     }
   }
-} 
+}
 
 %%------------------------------------------------
 
