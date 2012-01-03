@@ -23,12 +23,16 @@ theme =  { \relative c'
     <bes, g>8 c
     <a, f>8 c
     <a, f>8 c
-  | <a, a> c
+  | \crescTextCresc
+    <a, a>\<  c
     <a, a> c
     <g, bes> c
+    \!
     <g, bes> c
-  | <bes, e>8 c
+  | \dimTextDim
+    <bes, e>8\> c
     <bes, e>8 c
+    \!
     <a, f>2 \laissezVibrer
 }
 
